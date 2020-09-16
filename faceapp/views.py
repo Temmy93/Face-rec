@@ -2,11 +2,11 @@ from django.shortcuts import render, redirect
 from django.db import models
 from .models import Admin, Student
 from django.contrib.auth import login, authenticate, logout
+from django.contrib import auth
 from django.contrib import messages
-from .forms import StudentRegistrationForm, StudentLoginForm
+from .forms import StudentRegistrationForm, StudentLoginForm,AdminRegistrationForm, AdminLoginForm
 
 
-# Create your views here.
 def index(request):
     return render(request, 'index.html')
 
@@ -96,3 +96,52 @@ def student_portal(request):
 def student_logout(request):
     logout(request)
     return redirect("student_login")
+
+
+
+
+
+
+
+
+#Admin Views
+def admin_signup (request):
+    if request.user.is_authenticated and isinstance(request.user, Admin):
+        return redirect("admin_profile")
+    form = AdminRegistrationForm()
+    if request.method =='POST':
+        form = AdminRegistrationForm(request.POST)
+        if form.is_valid():
+            admin = form.save()
+            return redirect('admin_profile')
+    return render(request, 'admin_signup.html', {"form":form})
+    
+
+def admin_login(request):
+    if request.user.is_authenticated and isinstance(request.user, Admin):
+        return redirect("admin_profile")
+    form = AdminLoginForm()
+    if request.method == 'POST':
+        form = AdminLoginForm(request.POST)
+        if form.is_valid():
+            admin = form.save()
+            login(request, admin)
+            return redirect("admin_profile")
+    return render(request, 'admin_login.html', {"form":form})
+
+
+def admin_profile(request):
+    if not request.user.is_authenticated or not isinstance(request.user, Admin):
+        return redirect("admin_login")
+    return render(request, 'admin_profile.html')
+
+
+def admin_portal(request):
+    if request.user.is_authenticated and isinstance(request.user, Admin):
+        return redirect("admin_profile")
+    return render(request, 'admin_portal.html')
+
+def admin_logout(request):
+    logout(request)
+    return redirect("admin_login")
+
