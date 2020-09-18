@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% block title %} Signup | Admin{% endblock %}< {% block content %} <section class="engine"><a
+    href="https://mobirise.info/r">bootstrap templates</a></section>
+  <section class="contacts2 cid-s9qYdHyinS" id="contacts2-f">
+
+
+
+    <div class="container">
+      <h2 class="align-center mbr-fonts-style mbr-light display-2">Admin Sign Up Form</h2>
+      <h3 class="mbr-section-subtitle align-center mbr-fonts-style mbr-light mbr-pb-3 mbr-pt-1 display-5">Fill in Your
+        Registration Details</h3>
+
+
+      <div class="mbr-row mbr-jc-c mbr-pt-4">
+        <div class="mbr-col-lg-7 mbr-col-md-10 mbr-col-sm-12">
+          <!----------------------------- Form field begins----------------------------------->
+          <form class="mbr-form" method="post" target="_top">
+            <div class="mbr-form-row">
+              <div submit-success="" class="mbr-col-sm-12 mbr-col-md-12">
+
+                {% csrf_token %}
+
+              </div>
+              <div submit-error="" class="mbr-col-sm-12 mbr-col-md-12">
+
+              </div>
+            </div>
+            <div class="mbr-form-row">
+
+              <!----------------------------- Form details begins----------------------------------->
+
+              <!----------------------------- Firstname----------------------------------->
+              <div class="field mbr-col-sm-12 mbr-col">
+
+                {% if form.firstname.errors %}
+                {% for error in form.firstname.errors %}
+                <p class="text-danger">
+                  {{ error }}
+                </p>
+                {% endfor %}
+                {% endif %}
+                <input class="field-input display-4" type="text" name="firstname" placeholder="Firstname" required="">
+              </div>
+
+
+              <!----------------------------- Surname----------------------------------->
+              <div class="field mbr-col-sm-12 mbr-col">
+                {% if form.surname.errors %}
+                {% for error in form.surname.errors %}
+                <p class="text-danger">
+                  {{ error }}
+                </p>
+                {% endfor %}
+                {% endif %}
+                <input class="field-input display-4" type="text" name="surname" placeholder="Surname" required="">
+              </div>
+
+
+              <!----------------------------- Matric number----------------------------------->
+              <div class="field mbr-col-sm-12 mbr-col">
+                {% if form.staff_number.errors %}
+                {% for error in form.staff_number.errors %}
+                <p class="text-danger">
+                  {{ error }}
+                </p>
+                {% endfor %}
+                {% endif %}
+                <input class="field-input display-4" type="text" name="staff_number" placeholder="Staff Number"
+                  required="">
+              </div>
+
+
+              <!----------------------------- Department----------------------------------->
+              <div class="field mbr-col-sm-12 mbr-col">
+                {% if form.department.errors %}
+                {% for error in form.department.errors %}
+                <p class="text-danger">
+                  {{ error }}
+                </p>
+                {% endfor %}
+                {% endif %}
+                <input class="field-input display-4" type="text" name="department" placeholder="Department" required="">
+              </div>
+
+
+
+              <!----------------------------- Email----------------------------------->
+              <div class="field mbr-col-sm-12 mbr-col">
+                {% if form.email.errors %}
+                {% for error in form.email.errors %}
+                <p class="text-danger">
+                  {{ error }}
+                </p>
+                {% endfor %}
+                {% endif %}
+                <input class="field-input display-4" type="email" name="email" placeholder="Email" required="">
+              </div>
+
+              <!----------------------------- Phone----------------------------------->
+              <div class="field mbr-col-sm-12 mbr-col">
+                {% if form.phone.errors %}
+                {% for error in form.phone.errors %}
+                <p class="text-danger">
+                  {{ error }}
+                </p>
+                {% endfor %}
+                {% endif %}
+                <input class="field-input display-4" type="tel" name="phone" placeholder="Phone" required="">
+              </div>
+
+
+
+              <!----------------------------- Password----------------------------------->
+              <div class="field mbr-col-sm-12 mbr-col">
+                {% if form.password1.errors %}
+                {% for error in form.password1.errors %}
+                <p class="text-danger">
+                  {{ error }}
+                </p>
+                {% endfor %}
+                {% endif %}
+                <input class="field-input display-4" type="password" name="password1" placeholder="Password"
+                  required="">
+              </div>
+
+
+              <!----------------------------- confirm Password----------------------------------->
+              <div class="field mbr-col-sm-12 mbr-col">
+                {% if form.password2.errors %}
+                <p class="text-danger">
+                  {% for error in form.password2.errors %}
+                  {{ error }}
+                  {% endfor %}
+                </p>
+                {% endif %}
+                <input class="field-input display-4" type="password" name="password2" placeholder="Confirm Password"
+                  required="">
+              </div>
+
+              <input type="submit" value="Submit">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% endblock %}

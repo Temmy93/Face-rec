@@ -4,69 +4,27 @@ from .models import Admin, Student
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import auth
 from django.contrib import messages
-from .forms import StudentRegistrationForm, StudentLoginForm,AdminRegistrationForm, AdminLoginForm
+from .forms import StudentRegistrationForm, StudentLoginForm, AdminRegistrationForm, AdminLoginForm
 
 
 def index(request):
     return render(request, 'index.html')
 
-def admin_portal(request):
-    return render(request, 'admin_portal.html')
-
-def admin_signup(request):
-    return render(request, 'admin_signup.html')
-
-def admin_profile(request):
-    return render(request, 'admin_profile.html')
-
-def admin_login(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        new = authenticate(username=username, password=password)
-        if new is not None:
-            auth.login(request, new)
-            return render(request, "admin_profile.html")
-        else:
-            messages.info(request, 'Invalid Login Details, Please Sign Up')
-            return redirect ('admin_login')
-    else:
-        return render(request, 'admin_login.html')
-
-
-def rdmin_signup(request):
-
-    if request.method == "POST":
-       Firstname = request.POST["F_name"]
-       Surname  = request.POST['S_name']
-       username = request.POST['username']
-       Staffnumber = request.POST['staff_number']
-       Dept = request.POST['dept']
-       email= request.POST['email']
-       Phone = request.POST['phone']
-       Password1 = request.POST['password1']
-       Password2 = request.POST['password2']
-
-
-       objects = models.Manager()
-
-
-       new = Admin.objects.create(username = username, password = Password1, email = email, F_name = Firstname, S_name = Surname,)
-       new.save();
-       return render(request,'admin_login.html')
-
-
 # Students Views
-def student_signup (request):
+
+
+def student_signup(request):
     if request.user.is_authenticated and isinstance(request.user, Student):
         return redirect("student_profile")
     form = StudentRegistrationForm()
-    if request.method =='POST':
+    if request.method == 'POST':
         form = StudentRegistrationForm(request.POST)
         if form.is_valid():
             student = form.save()
+            login(request, student,
+                  backend="faceapp.backends.StudentAuthenticationBackend")
             return redirect('student_profile')
-    return render(request, 'student_signup.html', {"form":form})
+    return render(request, 'student_signup.html', {"form": form})
 
 
 def student_login(request):
@@ -77,9 +35,10 @@ def student_login(request):
         form = StudentLoginForm(request.POST)
         if form.is_valid():
             student = form.save()
-            login(request, student)
+            login(request, student,
+                  backend="faceapp.backends.StudentAuthenticationBackend")
             return redirect("student_profile")
-    return render(request, 'student_login.html', {"form":form})
+    return render(request, 'student_login.html', {"form": form})
 
 
 def student_profile(request):
@@ -93,29 +52,26 @@ def student_portal(request):
         return redirect("student_profile")
     return render(request, 'student_portal.html')
 
-def student_logout(request):
+
+def logout_all(request):
     logout(request)
-    return redirect("student_login")
+    return redirect("index")
 
 
-
-
-
-
-
-
-#Admin Views
-def admin_signup (request):
+# Admin Views
+def admin_signup(request):
     if request.user.is_authenticated and isinstance(request.user, Admin):
         return redirect("admin_profile")
     form = AdminRegistrationForm()
-    if request.method =='POST':
+    if request.method == 'POST':
         form = AdminRegistrationForm(request.POST)
         if form.is_valid():
             admin = form.save()
+            login(request, admin,
+                  backend="faceapp.backends.AdminAuthenticationBackend")
             return redirect('admin_profile')
-    return render(request, 'admin_signup.html', {"form":form})
-    
+    return render(request, 'admin_signup.html', {"form": form})
+
 
 def admin_login(request):
     if request.user.is_authenticated and isinstance(request.user, Admin):
@@ -125,12 +81,14 @@ def admin_login(request):
         form = AdminLoginForm(request.POST)
         if form.is_valid():
             admin = form.save()
-            login(request, admin)
+            login(request, admin,
+                  backend="faceapp.backends.AdminAuthenticationBackend")
             return redirect("admin_profile")
-    return render(request, 'admin_login.html', {"form":form})
+    return render(request, 'admin_login.html', {"form": form})
 
 
 def admin_profile(request):
+    print(request.user.is_authenticated, request.user)
     if not request.user.is_authenticated or not isinstance(request.user, Admin):
         return redirect("admin_login")
     return render(request, 'admin_profile.html')
@@ -140,8 +98,3 @@ def admin_portal(request):
     if request.user.is_authenticated and isinstance(request.user, Admin):
         return redirect("admin_profile")
     return render(request, 'admin_portal.html')
-
-def admin_logout(request):
-    logout(request)
-    return redirect("admin_login")
-
