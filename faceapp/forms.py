@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ValidationError
 from django.contrib.auth import authenticate, get_user_model, password_validation
-from .models import Student, Admin
+from .models import *
 from django.contrib.auth import authenticate
 
 
@@ -106,3 +106,14 @@ class StudentLoginForm(LoginForm):
 
 class AdminLoginForm(LoginForm):
     user_category = "admin"
+
+class ImageUpload(forms.Form):
+    img = forms.ImageField(allow_empty_file= False)
+    #img.save()
+
+
+def handle_uploaded_file(f):
+    with open('media/student_faces/img.jpg', 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
+

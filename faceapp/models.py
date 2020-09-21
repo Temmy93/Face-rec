@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, AbstractUser, UserManager
 
 
+
 class Admin(AbstractBaseUser):
 
     firstname = models.CharField(max_length=100)
@@ -34,3 +35,4 @@ class Student(AbstractBaseUser):
 
     def get_full_name(self):
         return f"{self.surname} {self.firstname}"
+        
