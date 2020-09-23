@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
 from django.db import models
-from .models import Admin, Student
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import auth
 from django.contrib import messages
-from .forms import StudentRegistrationForm, StudentLoginForm, AdminRegistrationForm, AdminLoginForm, ImageUpload, handle_uploaded_file
 from django import forms
 from django.contrib.auth.models import AbstractBaseUser, AbstractUser, UserManager
 
+from faceapp.forms import StudentRegistrationForm, StudentLoginForm, AdminRegistrationForm, AdminLoginForm, StudentImageUpload
+from faceapp.models import Admin, Student
 
 
 def index(request):
@@ -47,7 +47,13 @@ def student_login(request):
 def student_profile(request):
     if not request.user.is_authenticated or not isinstance(request.user, Student):
         return redirect("student_login")
-    return render(request, 'student_profile.html')
+    form = StudentImageUpload(instance=request.user)
+    if request.method == "POST":
+        form = ImageUpload(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('student_profile')
+    return render(request, 'student_profile.html', {"form": form})
 
 
 def student_portal(request):
@@ -101,18 +107,3 @@ def admin_portal(request):
     if request.user.is_authenticated and isinstance(request.user, Admin):
         return redirect("admin_profile")
     return render(request, 'admin_portal.html')
-
-
-def student_image_upload(request):
-    if request.method == 'POST':
-        form = ImageUpload(request.POST, request.FILES)
-        if form.is_valid():
-    
-            handle_uploaded_file(request.FILES['img'])
-            return render(request, 'student_profile.html')
-            print(' Image Uploaded Successfully')
-        else:
-            print('Image Not Uploaded')
-    
-    else:
-     print(' Improper Method')

@@ -3,23 +3,30 @@
     class="mbr-section content5 cid-s9rci3DDEI" id="content5-n">
     <div class="container">
         <div class="mbr-row mbr-jc-c">
-            <div class="mbr-section-btn mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center"><a
-                    class="btn btn-black-outline display-4" href="C:\Users\TEMMY_TOBY\Pictures\Camera"><span
-                        class="mbri-user mbr-iconfont mbr-iconfont-btn"><svg version="1.1"
-                            xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 32 32"
-                            fill="currentColor">
-
+            <div class="mbr-section-btn mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center">
+                <a class="btn btn-black-outline display-4" href="C:\Users\TEMMY_TOBY\Pictures\Camera">
+                    <span class="mbri-user mbr-iconfont mbr-iconfont-btn">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
+                            viewBox="0 0 32 32" fill="currentColor">
                             <path
                                 d="M16 6.667c-2.827 0-5.333 2.3-5.333 5.333v2.667c0 0.132 0.039 0.26 0.112 0.37l1.221 1.833v2.086l-6.344 3.805c-0.201 0.121-0.324 0.338-0.323 0.573v1.333c0 0.875 1.333 0.891 1.333 0v-0.956l6.344-3.805c0.201-0.121 0.323-0.338 0.323-0.573v-2.667c0-0.132-0.039-0.26-0.112-0.37l-1.221-1.833v-2.464c0-2.3 1.894-4 4-4s4 1.7 4 4v2.464l-1.221 1.833c-0.073 0.11-0.112 0.238-0.112 0.37v2.667c-0.001 0.234 0.122 0.452 0.323 0.573l6.344 3.805v0.956c0 0.907 1.333 0.854 1.333 0v-1.333c0.001-0.234-0.122-0.452-0.323-0.573l-6.344-3.805v-2.086l1.221-1.833c0.073-0.11 0.112-0.238 0.112-0.37v-2.667c0-3.033-2.506-5.333-5.333-5.333zM16 0c-8.829 0-16 7.171-16 16s7.171 16 16 16c8.829 0 16-7.171 16-16s-7.171-16-16-16zM16 1.333c8.108 0 14.667 6.559 14.667 14.667s-6.559 14.667-14.667 14.667c-8.108 0-14.667-6.559-14.667-14.667s6.559-14.667 14.667-14.667z">
                             </path>
-                        </svg></span>UPLOAD PHOTO</a> <a class="btn btn-black-outline display-4"
-                    href="https://mobirise.co"><span class="fa fa-camera-retro mbr-iconfont mbr-iconfont-btn"><svg
-                            width="100%" height="100%" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"
+                        </svg>
+                    </span>
+                    UPLOAD PHOTO
+                </a>
+                <a class="btn btn-black-outline display-4" href="https://mobirise.co">
+                    <span class="fa fa-camera-retro mbr-iconfont mbr-iconfont-btn">
+                        <svg width="100%" height="100%" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor">
                             <path
                                 d="M928 832q0-14-9-23t-23-9q-66 0-113 47t-47 113q0 14 9 23t23 9 23-9 9-23q0-40 28-68t68-28q14 0 23-9t9-23zm224 130q0 106-75 181t-181 75-181-75-75-181 75-181 181-75 181 75 75 181zm-1024 574h1536v-128h-1536v128zm1152-574q0-159-112.5-271.5t-271.5-112.5-271.5 112.5-112.5 271.5 112.5 271.5 271.5 112.5 271.5-112.5 112.5-271.5zm-1024-642h384v-128h-384v128zm-128 192h1536v-256h-828l-64 128h-644v128zm1664-256v1280q0 53-37.5 90.5t-90.5 37.5h-1536q-53 0-90.5-37.5t-37.5-90.5v-1280q0-53 37.5-90.5t90.5-37.5h1536q53 0 90.5 37.5t37.5 90.5z">
                             </path>
-                        </svg></span>TAKE PICTURE</a></div>
+                        </svg>
+                    </span>
+                    TAKE PICTURE
+                </a>
+            </div>
         </div>
     </div>
     </section>
@@ -30,7 +37,7 @@
                 <div class="card mbr-col-sm-12 mbr-col-md-12 mbr-col-lg-6 last-child">
                     <div class="card-wrapper mbr-p-5 mbr-flex">
                         <div class="card-img mbr-col-sm-12 mbr-col-md-6 mbr-m-auto">
-                            <amp-img src="/static/static/images/face1.jpg" layout="responsive" width="201" height="201"
+                            <amp-img src="{{ request.user.get_img_url }}" layout="responsive" width="201" height="201"
                                 alt="Mobirise" class="mobirise-loader">
                                 <div placeholder="" class="placeholder">
                                     <div class="mobirise-spinner">

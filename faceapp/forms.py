@@ -1,8 +1,9 @@
 from django import forms
 from django.forms import ValidationError
 from django.contrib.auth import authenticate, get_user_model, password_validation
-from .models import *
 from django.contrib.auth import authenticate
+
+from faceapp.models import Admin, Student
 
 
 class AdminRegistrationForm(forms.ModelForm):
@@ -19,8 +20,7 @@ class AdminRegistrationForm(forms.ModelForm):
 
     class Meta:
         model = Admin
-        fields = ('firstname', 'surname', 'staff_number',
-                  'department', 'phone', 'email')
+        fields = ('firstname', 'surname', 'staff_number', 'department', 'phone', 'email')
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
@@ -81,12 +81,11 @@ class LoginForm(forms.Form):
         """
         self.request = kwargs.get("request")
         self.user_cache = None
-        return super().__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def clean(self):
         username = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
-        print(username, password)
 
         if username and password:
             self.user_cache = authenticate(
@@ -107,13 +106,10 @@ class StudentLoginForm(LoginForm):
 class AdminLoginForm(LoginForm):
     user_category = "admin"
 
-class ImageUpload(forms.Form):
-    img = forms.ImageField(allow_empty_file= False)
-    #img.save()
 
+class StudentImageUpload(forms.ModelForm):
+    img = forms.ImageField(allow_empty_file=False)
 
-def handle_uploaded_file(f):
-    with open('media/student_faces/img.jpg', 'wb+') as destination:
-        for chunk in f.chunks():
-            destination.write(chunk)
-
+    class Meta:
+        model = Student
+        fields = ("img",)

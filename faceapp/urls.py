@@ -13,6 +13,4 @@ urlpatterns = [
     path('students/login', views.student_login, name='student_login'),
     path('logout', views.logout_all, name='logout'),
     path('students/profile', views.student_profile, name='student_profile'),
-    path('students/student_image_upload', views.student_image_upload, name = 'student_image')
 ]
-

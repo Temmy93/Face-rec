@@ -4,43 +4,40 @@
 {%load static  %}
 <section class="engine"><a href="https://mobirise.info/a">online web builder</a></section>
 <section class="mbr-section content5 cid-s9rci3DDEI" id="content5-n">
-    <form method = "post" action ="student_image_upload" enctype ="multipart/form-data">
-    {% csrf_token %}
-
-
-    <div class="container">
-        <div class="mbr-row mbr-jc-c">
-            <div class="mbr-section-btn mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center"><a
-                    class="btn btn-black-outline display-4" ><span
-                        <svg version="1.1"
-                            xmlns="http://www.w3.org/2000/svg" width="60%" height="100%" viewBox="0 0 32 32"
-                            fill="currentColor">
-
-                            <path
-                                d="M16 6.667c-2.827 0-5.333 2.3-5.333 5.333v2.667c0 0.132 0.039 0.26 0.112 0.37l1.221 1.833v2.086l-6.344 3.805c-0.201 0.121-0.324 0.338-0.323 0.573v1.333c0 0.875 1.333 0.891 1.333 0v-0.956l6.344-3.805c0.201-0.121 0.323-0.338 0.323-0.573v-2.667c0-0.132-0.039-0.26-0.112-0.37l-1.221-1.833v-2.464c0-2.3 1.894-4 4-4s4 1.7 4 4v2.464l-1.221 1.833c-0.073 0.11-0.112 0.238-0.112 0.37v2.667c-0.001 0.234 0.122 0.452 0.323 0.573l6.344 3.805v0.956c0 0.907 1.333 0.854 1.333 0v-1.333c0.001-0.234-0.122-0.452-0.323-0.573l-6.344-3.805v-2.086l1.221-1.833c0.073-0.11 0.112-0.238 0.112-0.37v-2.667c0-3.033-2.506-5.333-5.333-5.333zM16 0c-8.829 0-16 7.171-16 16s7.171 16 16 16c8.829 0 16-7.171 16-16s-7.171-16-16-16zM16 1.333c8.108 0 14.667 6.559 14.667 14.667s-6.559 14.667-14.667 14.667c-8.108 0-14.667-6.559-14.667-14.667s6.559-14.667 14.667-14.667z">
-                            </path>
-                                
-                        </svg></span><input type = "file" name = "img" style = "width: 200px" "height:20px">
-                        </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class="btn btn-black-outline display-4">
-                        <input type = "submit" name = "Submit" style = "width: 200px" "height:20px">
-                        </svg></span></a></div>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="container">
+            <div class="mbr-row mbr-jc-c">
+                <div class="mbr-section-btn mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center">
+                    <a class="btn btn-black-outline display-4">
+                        <span>
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="60%" height="100%"
+                                viewBox="0 0 32 32" fill="currentColor">
+                                <path
+                                    d="M16 6.667c-2.827 0-5.333 2.3-5.333 5.333v2.667c0 0.132 0.039 0.26 0.112 0.37l1.221 1.833v2.086l-6.344 3.805c-0.201 0.121-0.324 0.338-0.323 0.573v1.333c0 0.875 1.333 0.891 1.333 0v-0.956l6.344-3.805c0.201-0.121 0.323-0.338 0.323-0.573v-2.667c0-0.132-0.039-0.26-0.112-0.37l-1.221-1.833v-2.464c0-2.3 1.894-4 4-4s4 1.7 4 4v2.464l-1.221 1.833c-0.073 0.11-0.112 0.238-0.112 0.37v2.667c-0.001 0.234 0.122 0.452 0.323 0.573l6.344 3.805v0.956c0 0.907 1.333 0.854 1.333 0v-1.333c0.001-0.234-0.122-0.452-0.323-0.573l-6.344-3.805v-2.086l1.221-1.833c0.073-0.11 0.112-0.238 0.112-0.37v-2.667c0-3.033-2.506-5.333-5.333-5.333zM16 0c-8.829 0-16 7.171-16 16s7.171 16 16 16c8.829 0 16-7.171 16-16s-7.171-16-16-16zM16 1.333c8.108 0 14.667 6.559 14.667 14.667s-6.559 14.667-14.667 14.667c-8.108 0-14.667-6.559-14.667-14.667s6.559-14.667 14.667-14.667z">
+                                </path>
+                            </svg>
+                        </span>
+                    </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+                <div class="mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center">
+                    <input type="file" name="img" accept="image/*">
+                    <button class="btn btn-black-outline display-4 mbr-mr-auto" type="submit"
+                        value="Submit">Submit</button>
+                </div>
+            </div>
         </div>
-    </div>
 
     </form>
 </section>
 
 <section class="team2 mbr-section cid-s9rclUAwD5" id="team2-o">
-
-
-
     <div class="container">
         <div class="mbr-row mbr-jc-c">
             <div class="card mbr-col-sm-12 mbr-col-md-12 mbr-col-lg-6 last-child">
                 <div class="card-wrapper mbr-p-5 mbr-flex">
                     <div class="card-img mbr-col-sm-12 mbr-col-md-6 mbr-m-auto">
-                        <amp-img src="static/images/face1.jpg" layout="responsive" width="201" height="201"
+                        <amp-img src="{{ request.user.get_img_url }}" layout="responsive" width="201" height="201"
                             alt="Mobirise" class="mobirise-loader">
                             <div placeholder="" class="placeholder">
                                 <div class="mobirise-spinner">
@@ -58,24 +55,14 @@
                             {{ request.user.get_full_name }}</h3>
                         <p class="mbr-text mbr-fonts-style align-center mbr-pt-1 display-4">Dept:
                             {{ request.user.department }} <br><br>Level: 200<br>Classes Enrolled:</p>
-                        
-
                     </div>
                 </div>
             </div>
-
-
-
-
-
         </div>
     </div>
 </section>
 
 <section class="contact1 cid-s9rgDhltSO" id="contacts1-s">
-
-
-
     <div class="container">
         <h2 class="align-center mbr-fonts-style mbr-light display-2">
             Join Class&nbsp;</h2>
@@ -100,8 +87,6 @@
                                 data-form-field="Name" placeholder="Search Class" required=""
                                 id="form[data][0][1]-contacts1-s">
                         </div>
-
-
                         <div class="mbr-section-btn align-center field mbr-col-sm-12 mbr-col-md-12 mbr-col-auto"><button
                                 type="submit" class="btn btn-primary btn-form display-4">Search</button></div>
                     </div>
@@ -112,9 +97,6 @@
 </section>
 
 <section class="mbr-section content5 cid-s9rekoVmLg" id="content5-p">
-
-
-
     <div class="container">
         <div class="mbr-row mbr-jc-c">
             <div class="mbr-section-btn mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center"><a

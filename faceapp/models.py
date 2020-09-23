@@ -1,6 +1,16 @@
+from pathlib import Path
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, AbstractUser, UserManager
 
+
+def get_student_upload_path(instance, filename):
+    ext = Path(filename).suffix
+    return f'student_faces/{instance.matric_number}{ext}'
+
+
+def get_admin_upload_path(instance, filename):
+    ext = Path(filename).suffix
+    return f'admin_faces/{instance.staff_number}{ext}'
 
 
 class Admin(AbstractBaseUser):
@@ -11,13 +21,25 @@ class Admin(AbstractBaseUser):
     department = models.CharField(max_length=100)
     email = models.EmailField(max_length=254, unique=True)
     phone = models.CharField(max_length=11)
-    img = models.ImageField(upload_to='admin_faces')
+    img = models.ImageField(upload_to=get_admin_upload_path)
 
     USERNAME_FIELD = "staff_number"
     objects = UserManager()
 
     def get_full_name(self):
         return f"{self.surname} {self.firstname}"
+
+    @property
+    def is_staff(self):
+        return False
+
+    def has_module_perms(self, *args, **kwargs):
+        return False
+
+    def get_img_url(self):
+        if not self.img:
+            return "/static/images/face1.jpg"
+        return self.img.url
 
 
 class Student(AbstractBaseUser):
@@ -28,11 +50,22 @@ class Student(AbstractBaseUser):
     department = models.CharField(max_length=100)
     email = models.EmailField(max_length=254, unique=True)
     phone = models.CharField(max_length=11)
-    img = models.ImageField(upload_to='student_faces')
+    img = models.ImageField(upload_to=get_student_upload_path)
 
     USERNAME_FIELD = "matric_number"
     objects = UserManager()
 
     def get_full_name(self):
         return f"{self.surname} {self.firstname}"
-        
+
+    @property
+    def is_staff(self):
+        return False
+
+    def has_module_perms(self, *args, **kwargs):
+        return False
+
+    def get_img_url(self):
+        if not self.img:
+            return "/static/images/face1.jpg"
+        return self.img.url
