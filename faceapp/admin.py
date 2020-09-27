@@ -3,4 +3,5 @@ from .models import Student, Admin, Course
 # Register your models here.
 
 admin.site.register(Student),
-admin.site.register(Admin)
+admin.site.register(Admin),
+admin.site.register(Course),
