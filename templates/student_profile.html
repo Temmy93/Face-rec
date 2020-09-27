@@ -37,7 +37,7 @@
             <div class="card mbr-col-sm-12 mbr-col-md-12 mbr-col-lg-6 last-child">
                 <div class="card-wrapper mbr-p-5 mbr-flex">
                     <div class="card-img mbr-col-sm-12 mbr-col-md-6 mbr-m-auto">
-                        <amp-img src="{{ request.user.get_img_url }}" layout="responsive" width="201" height="201"
+                        <img src="{{ request.user.get_img_url }}" layout="responsive" width="201" height="201"
                             alt="Mobirise" class="mobirise-loader">
                             <div placeholder="" class="placeholder">
                                 <div class="mobirise-spinner">
@@ -47,14 +47,16 @@
                                 </div>
                             </div>
 
-                        </amp-img>
+                        </img>
                     </div>
                     <div class="card-box mbr-col-sm-12 mbr-col-md-6 mbr-m-auto mbr-p-2">
-                        <h4 class="mbr-fonts-style card-subtitle align-center mbr-semibold display-4">PROFILE</h4>
-                        <h3 class="card-title mbr-fonts-style align-center  mbr-pt-1 display-4 mbr-pb-3">Name:
-                            {{ request.user.get_full_name }}</h3>
-                        <p class="mbr-text mbr-fonts-style align-center mbr-pt-1 display-4">Dept:
-                            {{ request.user.department }} <br><br>Level: 200<br>Classes Enrolled:</p>
+                        <h4 class="mbr-fonts-style card-subtitle align-left mbr-semibold display-4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROFILE<br><br>
+                        Name: {{ request.user.get_full_name }}<br><br>
+                        Matric No: {{ request.user.matric_number }}<br><br>
+                        Dept: {{ request.user.department }} <br><br>
+                        Phone: {{ request.user.phone }} <br><br>
+                        Email: {{ request.user.email }} <br><br>
+                        Courses Enrolled:{{ students }}</h4>
                     </div>
                 </div>
             </div>
@@ -65,45 +67,14 @@
 <section class="contact1 cid-s9rgDhltSO" id="contacts1-s">
     <div class="container">
         <h2 class="align-center mbr-fonts-style mbr-light display-2">
-            Join Class&nbsp;</h2>
+            &nbsp;</h2>
         <h3 class="mbr-section-subtitle align-center mbr-fonts-style mbr-light mbr-pt-1 mbr-pb-3 display-5">
-            Search For a Class to Join</h3>
-
-        <div class="mbr-row mbr-jc-c mbr-pt-4">
-            <div class="mbr-col-lg-10  mbr-col-md-12 mbr-col-sm-12" data-form-type="formoid">
-                <form class="mbr-form" method="post" target="_top" action-xhr="https://formoid.net/api/amp-form/push">
-                    <div class="mbr-row">
-                        <div submit-success="" class="mbr-col-sm-12 mbr-col-md-12">
-
-                        </div>
-                        <div submit-error="" class="mbr-col-sm-12 mbr-col-md-12">
-
-                        </div>
-                    </div>
-                    <div class="mbr-row">
-                        <div class="field mbr-col-sm-12 mbr-col-md-12 mbr-col" data-for="form[data][0][1]">
-                            <input type="hidden" name="form[data][0][0]" value="Name" id="form[data][0][0]-contacts1-s">
-                            <input class="field-input display-4" type="text" name="form[data][0][1]"
-                                data-form-field="Name" placeholder="Search Class" required=""
-                                id="form[data][0][1]-contacts1-s">
-                        </div>
-                        <div class="mbr-section-btn align-center field mbr-col-sm-12 mbr-col-md-12 mbr-col-auto"><button
-                                type="submit" class="btn btn-primary btn-form display-4">Search</button></div>
-                    </div>
-                </form>
+            Click the Button Below To Proceed To Course Registeration Portal  </h3>
+             <div class="mbr-row mbr-jc-c">
+            <div class="mbr-section-btn mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center"><a
+                    class="btn btn-primary display-4" href="course_portal">GO TO COURSE REG</a>
             </div>
         </div>
     </div>
 </section>
-
-<section class="mbr-section content5 cid-s9rekoVmLg" id="content5-p">
-    <div class="container">
-        <div class="mbr-row mbr-jc-c">
-            <div class="mbr-section-btn mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center"><a
-                    class="btn btn-primary display-4" href="https://mobirise.co">SUBMIT</a></div>
-        </div>
-    </div>
-</section>
-
-
 {% endblock %}

@@ -1,35 +1,36 @@
 {% extends "base.html" %}
-{% block title %} Profile | Admin{% endblock %}< {% block content %} <section
-    class="mbr-section content5 cid-s9rci3DDEI" id="content5-n">
-    <div class="container">
-        <div class="mbr-row mbr-jc-c">
-            <div class="mbr-section-btn mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center">
-                <a class="btn btn-black-outline display-4" href="C:\Users\TEMMY_TOBY\Pictures\Camera">
-                    <span class="mbri-user mbr-iconfont mbr-iconfont-btn">
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
-                            viewBox="0 0 32 32" fill="currentColor">
-                            <path
-                                d="M16 6.667c-2.827 0-5.333 2.3-5.333 5.333v2.667c0 0.132 0.039 0.26 0.112 0.37l1.221 1.833v2.086l-6.344 3.805c-0.201 0.121-0.324 0.338-0.323 0.573v1.333c0 0.875 1.333 0.891 1.333 0v-0.956l6.344-3.805c0.201-0.121 0.323-0.338 0.323-0.573v-2.667c0-0.132-0.039-0.26-0.112-0.37l-1.221-1.833v-2.464c0-2.3 1.894-4 4-4s4 1.7 4 4v2.464l-1.221 1.833c-0.073 0.11-0.112 0.238-0.112 0.37v2.667c-0.001 0.234 0.122 0.452 0.323 0.573l6.344 3.805v0.956c0 0.907 1.333 0.854 1.333 0v-1.333c0.001-0.234-0.122-0.452-0.323-0.573l-6.344-3.805v-2.086l1.221-1.833c0.073-0.11 0.112-0.238 0.112-0.37v-2.667c0-3.033-2.506-5.333-5.333-5.333zM16 0c-8.829 0-16 7.171-16 16s7.171 16 16 16c8.829 0 16-7.171 16-16s-7.171-16-16-16zM16 1.333c8.108 0 14.667 6.559 14.667 14.667s-6.559 14.667-14.667 14.667c-8.108 0-14.667-6.559-14.667-14.667s6.559-14.667 14.667-14.667z">
-                            </path>
-                        </svg>
-                    </span>
-                    UPLOAD PHOTO
-                </a>
-                <a class="btn btn-black-outline display-4" href="https://mobirise.co">
-                    <span class="fa fa-camera-retro mbr-iconfont mbr-iconfont-btn">
-                        <svg width="100%" height="100%" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"
-                            fill="currentColor">
-                            <path
-                                d="M928 832q0-14-9-23t-23-9q-66 0-113 47t-47 113q0 14 9 23t23 9 23-9 9-23q0-40 28-68t68-28q14 0 23-9t9-23zm224 130q0 106-75 181t-181 75-181-75-75-181 75-181 181-75 181 75 75 181zm-1024 574h1536v-128h-1536v128zm1152-574q0-159-112.5-271.5t-271.5-112.5-271.5 112.5-112.5 271.5 112.5 271.5 271.5 112.5 271.5-112.5 112.5-271.5zm-1024-642h384v-128h-384v128zm-128 192h1536v-256h-828l-64 128h-644v128zm1664-256v1280q0 53-37.5 90.5t-90.5 37.5h-1536q-53 0-90.5-37.5t-37.5-90.5v-1280q0-53 37.5-90.5t90.5-37.5h1536q53 0 90.5 37.5t37.5 90.5z">
-                            </path>
-                        </svg>
-                    </span>
-                    TAKE PICTURE
-                </a>
+{% block title %} Profile | Admin{% endblock %}
+{% block content %}
+{%load static  %}
+<section class="engine"><a href="https://mobirise.info/a">online web builder</a></section>
+<section class="mbr-section content5 cid-s9rci3DDEI" id="content5-n">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="container">
+            <div class="mbr-row mbr-jc-c">
+                <div class="mbr-section-btn mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center">
+                    <a class="btn btn-black-outline display-4">
+                        <span>
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="60%" height="100%"
+                                viewBox="0 0 32 32" fill="currentColor">
+                                <path
+                                    d="M16 6.667c-2.827 0-5.333 2.3-5.333 5.333v2.667c0 0.132 0.039 0.26 0.112 0.37l1.221 1.833v2.086l-6.344 3.805c-0.201 0.121-0.324 0.338-0.323 0.573v1.333c0 0.875 1.333 0.891 1.333 0v-0.956l6.344-3.805c0.201-0.121 0.323-0.338 0.323-0.573v-2.667c0-0.132-0.039-0.26-0.112-0.37l-1.221-1.833v-2.464c0-2.3 1.894-4 4-4s4 1.7 4 4v2.464l-1.221 1.833c-0.073 0.11-0.112 0.238-0.112 0.37v2.667c-0.001 0.234 0.122 0.452 0.323 0.573l6.344 3.805v0.956c0 0.907 1.333 0.854 1.333 0v-1.333c0.001-0.234-0.122-0.452-0.323-0.573l-6.344-3.805v-2.086l1.221-1.833c0.073-0.11 0.112-0.238 0.112-0.37v-2.667c0-3.033-2.506-5.333-5.333-5.333zM16 0c-8.829 0-16 7.171-16 16s7.171 16 16 16c8.829 0 16-7.171 16-16s-7.171-16-16-16zM16 1.333c8.108 0 14.667 6.559 14.667 14.667s-6.559 14.667-14.667 14.667c-8.108 0-14.667-6.559-14.667-14.667s6.559-14.667 14.667-14.667z">
+                                </path>
+                            </svg>
+                        </span>
+                    </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+                <div class="mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center">
+                    <input type="file" name="img" accept="image/*">
+                    <button class="btn btn-black-outline display-4 mbr-mr-auto" type="submit"
+                        value="Submit">Submit</button>
+                </div>
             </div>
         </div>
-    </div>
-    </section>
+
+    </form>
+</section>
+
 
     <section class="team2 mbr-section cid-s9rclUAwD5" id="team2-o">
         <div class="container">
@@ -37,7 +38,7 @@
                 <div class="card mbr-col-sm-12 mbr-col-md-12 mbr-col-lg-6 last-child">
                     <div class="card-wrapper mbr-p-5 mbr-flex">
                         <div class="card-img mbr-col-sm-12 mbr-col-md-6 mbr-m-auto">
-                            <amp-img src="{{ request.user.get_img_url }}" layout="responsive" width="201" height="201"
+                            <img src="{{ request.user.get_img_url }}" layout="responsive" width="201" height="201"
                                 alt="Mobirise" class="mobirise-loader">
                                 <div placeholder="" class="placeholder">
                                     <div class="mobirise-spinner">
@@ -47,17 +48,19 @@
                                     </div>
                                 </div>
 
-                            </amp-img>
+                            </img>
                         </div>
                         <div class="card-box mbr-col-sm-12 mbr-col-md-6 mbr-m-auto mbr-p-2">
-                            <h4 class="mbr-fonts-style card-subtitle align-center mbr-semibold display-4">
-                                PROFILE</h4>
-                            <h3 class="card-title mbr-fonts-style align-center  mbr-pt-1 display-4 mbr-pb-3">
+                            <h4 class="mbr-fonts-style card-subtitle align-left mbr-semibold display-4">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROFILE<br><br>
+                            Name: {{ request.user.get_full_name }}<br><br>
+                            Dept: {{ request.user.department }}<br><br>
+                            Staff ID: {{ request.user.staff_number }}<br><br>
+                            Phone: {{ request.user.phone }}<br><br>
+                            Email: {{ request.user.email }}<br><br></h4>
 
-                                Name: {{ request.user.get_full_name }}</h3>
-                            <p class="mbr-text mbr-fonts-style align-center mbr-pt-1 display-4">Dept:
-                                {{ request.user.department }}
-                                <br><br>Level: 200<br>Classes Enrolled:</p>
+                            
+                            </p>
 
                         </div>
                     </div>
@@ -68,13 +71,15 @@
     <section class="contact1 cid-s9rgDhltSO" id="contacts1-s">
         <div class="container">
             <h2 class="align-center mbr-fonts-style mbr-light display-2">
-                Join Class&nbsp;</h2>
-            <h3 class="mbr-section-subtitle align-center mbr-fonts-style mbr-light mbr-pt-1 mbr-pb-3 display-5"> Search
-                For a Class to Join</h3>
+                Student Verification&nbsp;</h2>
+            <h3 class="mbr-section-subtitle align-center mbr-fonts-style mbr-light mbr-pt-1 mbr-pb-3 display-5"> Enter Student's Matriculation Number in The Column Below </h3>
             <div class="mbr-row mbr-jc-c mbr-pt-4">
                 <div class="mbr-col-lg-10  mbr-col-md-12 mbr-col-sm-12" data-form-type="formoid">
+                
                     <form class="mbr-form" method="post" target="_top"
-                        action-xhr="https://formoid.net/api/amp-form/push">
+                        action-xhr="https://formoid.net/api/amp-form/push" action = "check_student">
+                        {% csrf_token %}
+
                         <div class="mbr-row">
                             <div submit-success="" class="mbr-col-sm-12 mbr-col-md-12">
                             </div>
@@ -83,26 +88,25 @@
                         </div>
                         <div class="mbr-row">
                             <div class="field mbr-col-sm-12 mbr-col-md-12 mbr-col" data-for="form[data][0][1]">
-                                <input type="hidden" name="form[data][0][0]" value="Name"
+                                <input type="hidden" name="matric_number" value="Name"
                                     id="form[data][0][0]-contacts1-s">
-                                <input class="field-input display-4" type="text" name="form[data][0][1]"
-                                    data-form-field="Name" placeholder="Search Class" required="">
+                                <input class="field-input display-4" type="text" name="matric_number"
+                                    data-form-field="Name" placeholder="Matriculation Number" required="">
                             </div>
-                            <div class="mbr-section-btn align-center field mbr-col-sm-12 mbr-col-md-12 mbr-col-auto">
-                                <button type="submit" class="btn btn-primary btn-form display-4">Search</button></div>
+                            
                         </div>
+                        <div class="container">
+                            <div class="mbr-row mbr-jc-c">
+                                <div class="mbr-section-btn mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center">
+                                    <a class="btn btn-primary display-4" href="check_student">SUBMIT</a>
+                                </div>
+                            </div>
+                    </div>
+
+
                     </form>
+
                 </div>
             </div>
         </div>
-    </section>
-
-    <section class="mbr-section content5 cid-s9rekoVmLg" id="content5-p">
-        <div class="container">
-            <div class="mbr-row mbr-jc-c">
-                <div class="mbr-section-btn mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center"><a
-                        class="btn btn-primary display-4" href="https://mobirise.co">SUBMIT</a></div>
-            </div>
-        </div>
-    </section>
     {% endblock %}

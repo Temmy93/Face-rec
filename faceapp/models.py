@@ -46,7 +46,7 @@ class Student(AbstractBaseUser):
 
     firstname = models.CharField(max_length=100)
     surname = models.CharField(max_length=100)
-    matric_number = models.CharField(max_length=100, unique=True)
+    matric_number = models.CharField(max_length=100, unique=True, null = True)
     department = models.CharField(max_length=100)
     email = models.EmailField(max_length=254, unique=True)
     phone = models.CharField(max_length=11)
@@ -69,3 +69,16 @@ class Student(AbstractBaseUser):
         if not self.img:
             return "/static/images/face1.jpg"
         return self.img.url
+
+
+
+
+class Course(models.Model):
+    
+    student_matric_number = models.ManyToManyField(Student)
+    course_code = models.CharField(max_length= 15)
+    course_title = models.CharField(max_length = 100, null = True)
+
+#student.course._set.all
+    def get_courses(self):
+        return f"{self.student.course_set.all()}"

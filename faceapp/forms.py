@@ -3,7 +3,7 @@ from django.forms import ValidationError
 from django.contrib.auth import authenticate, get_user_model, password_validation
 from django.contrib.auth import authenticate
 
-from faceapp.models import Admin, Student
+from faceapp.models import Admin, Student, Course
 
 
 class AdminRegistrationForm(forms.ModelForm):
@@ -113,3 +113,30 @@ class StudentImageUpload(forms.ModelForm):
     class Meta:
         model = Student
         fields = ("img",)
+
+
+class AdminImageUpload(forms.ModelForm):
+    img = forms.ImageField(allow_empty_file=False)
+
+    class Meta:
+        model = Student
+        fields = ("img",)
+
+
+class CheckStudentMatric(forms.ModelForm):
+    matric_number = forms.CharField()
+
+    class Meta:
+        model = Admin
+        fields = ("matric_number",)
+
+
+
+class CourseForm (forms.ModelForm):
+    course_title = forms.CharField() 
+    course_code = forms.CharField()
+
+    class Meta:
+        model = Course
+        fields = ("course_title", "course_code",)
+

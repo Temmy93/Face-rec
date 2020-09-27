@@ -6,8 +6,8 @@ from django.contrib import messages
 from django import forms
 from django.contrib.auth.models import AbstractBaseUser, AbstractUser, UserManager
 
-from faceapp.forms import StudentRegistrationForm, StudentLoginForm, AdminRegistrationForm, AdminLoginForm, StudentImageUpload
-from faceapp.models import Admin, Student
+from faceapp.forms import StudentRegistrationForm, StudentLoginForm, AdminRegistrationForm, AdminLoginForm, CourseForm, StudentImageUpload, AdminImageUpload, CheckStudentMatric
+from faceapp.models import Admin, Student, Course
 
 
 def index(request):
@@ -49,7 +49,7 @@ def student_profile(request):
         return redirect("student_login")
     form = StudentImageUpload(instance=request.user)
     if request.method == "POST":
-        form = ImageUpload(request.POST, request.FILES, instance=request.user)
+        form = StudentImageUpload(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
             return redirect('student_profile')
@@ -97,13 +97,61 @@ def admin_login(request):
 
 
 def admin_profile(request):
-    print(request.user.is_authenticated, request.user)
     if not request.user.is_authenticated or not isinstance(request.user, Admin):
         return redirect("admin_login")
-    return render(request, 'admin_profile.html')
+    form = AdminImageUpload(instance=request.user)
+    if request.method == "POST":
+        form = AdminImageUpload(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('admin_profile')
+    return render(request, 'admin_profile.html', {"form": form})
+    
+
+    #print(request.user.is_authenticated, request.user)
+    #if not request.user.is_authenticated or not isinstance(request.user, Admin):
+     #   return redirect("admin_login")
+    #return render(request, 'admin_profile.html')
 
 
 def admin_portal(request):
     if request.user.is_authenticated and isinstance(request.user, Admin):
         return redirect("admin_profile")
     return render(request, 'admin_portal.html')
+
+
+
+def check_student(request):
+    if not request.user.is_authenticated or not isinstance(request.user, Admin):
+        return redirect ("admin_login")
+    if request.method == "POST":
+        matric_number = request.POST['matric_number']
+        form = CheckStudentMatric(instance = request.user)
+        if form.is_valid():
+            form = request.POST['matric_number']
+            user = user.objects.filter(matric_number = matric_number)
+            print('The students name is : matric_number')
+            return render (request, 'student_profile.html')
+    return render(request, 'admin_profile.html')
+
+
+def course_portal(request):
+    if request.method == 'POST':
+        form = CourseForm(request.POST)
+        if form.is_valid():
+            course_title =form.cleaned_data['course_title']
+            course_code =form.cleaned_data['course_code']
+            form.save()
+            print(course_title, course_code)
+             
+
+    form = CourseForm()
+    return render(request, 'viewclass.html', {'form': form})
+
+
+
+students = Student.objects.all()
+for student in students:
+    print(student.course_set.all())
+    print(students)
+    

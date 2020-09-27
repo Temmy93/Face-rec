@@ -1,6 +1,7 @@
 from django.urls import path
 
 from . import views
+from .views import course_portal
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -13,4 +14,8 @@ urlpatterns = [
     path('students/login', views.student_login, name='student_login'),
     path('logout', views.logout_all, name='logout'),
     path('students/profile', views.student_profile, name='student_profile'),
+    path('admin/check_student', views.check_student, name = 'check_student'),
+    path('students/course_portal', views.course_portal, name = 'course_portal'),
+
+
 ]
