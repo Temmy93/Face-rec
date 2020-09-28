@@ -80,25 +80,11 @@
                         action-xhr="https://formoid.net/api/amp-form/push" action = "check_student">
                         {% csrf_token %}
 
-                        <div class="mbr-row">
-                            <div submit-success="" class="mbr-col-sm-12 mbr-col-md-12">
-                            </div>
-                            <div submit-error="" class="mbr-col-sm-12 mbr-col-md-12">
-                            </div>
-                        </div>
-                        <div class="mbr-row">
-                            <div class="field mbr-col-sm-12 mbr-col-md-12 mbr-col" data-for="form[data][0][1]">
-                                <input type="hidden" name="matric_number" value="Name"
-                                    id="form[data][0][0]-contacts1-s">
-                                <input class="field-input display-4" type="text" name="matric_number"
-                                    data-form-field="Name" placeholder="Matriculation Number" required="">
-                            </div>
-                            
-                        </div>
+                       {{ form.as_p }}
                         <div class="container">
                             <div class="mbr-row mbr-jc-c">
                                 <div class="mbr-section-btn mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center">
-                                    <a class="btn btn-primary display-4" href="check_student">SUBMIT</a>
+                                    <a class="btn btn-primary display-4" href="check_student">Check Student</a>
                                 </div>
                             </div>
                     </div>
@@ -109,4 +95,20 @@
                 </div>
             </div>
         </div>
+
+
+
+          <div class="card-box mbr-col-sm-12 mbr-col-md-6 mbr-m-auto mbr-p-2">
+                            <h4 class="mbr-fonts-style card-subtitle align-left mbr-semibold display-4">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROFILE<br><br>
+                            Student's Name: {{ request.student.user.get_full_name }}<br><br>
+                            Student's Dept: {{ request.student.user.department }}<br><br>
+                            Student's Matric NO: {{ request.student.user.matric_number }}<br><br>
+                            Student's Phone No: {{ request.student.user.phone }}<br><br>
+                            Student's Email: {{ request.student.user.email }}<br><br></h4>
+
+                            
+                            </p>
+
+            </div>
     {% endblock %}

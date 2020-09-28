@@ -122,17 +122,14 @@ def admin_portal(request):
 
 
 def check_student(request):
-    if not request.user.is_authenticated or not isinstance(request.user, Admin):
-        return redirect ("admin_login")
     if request.method == "POST":
-        matric_number = request.POST['matric_number']
-        form = CheckStudentMatric(instance = request.user)
+        form = CheckStudentMatric(request.POST)
         if form.is_valid():
-            form = request.POST['matric_number']
-            user = user.objects.filter(matric_number = matric_number)
-            print('The students name is : matric_number')
-            return render (request, 'student_profile.html')
-    return render(request, 'admin_profile.html')
+            matric_number = form.cleaned_data['matric_number']
+            print(matric_number)
+            return render (request.Student.objects.get(matric_number = matric_number))
+    form = CheckStudentMatric()
+    return render(request, 'admin_profile.html', {'form': form})
 
 
 def course_portal(request):
@@ -146,12 +143,12 @@ def course_portal(request):
              
 
     form = CourseForm()
-    return render(request, 'viewclass.html', {'form': form})
+    return render(request, 'coursereg.html', {'form': form})
 
 
 
-students = Student.objects.all()
-for student in students:
-    print(student.course_set.all())
-    print(students)
+#students = Student.objects.all()
+#for student in students:
+    #print(student.course_set.all())
+    #print(students)
     
