@@ -120,7 +120,9 @@ def admin_portal(request):
     return render(request, 'admin_portal.html')
 
 
-
+# supposed to check student's authenticity from admin end by 
+# displayiong student profile  and course details on admin's page
+#
 def check_student(request):
     if request.method == "POST":
         form = CheckStudentMatric(request.POST)
@@ -131,6 +133,8 @@ def check_student(request):
     form = CheckStudentMatric()
     return render(request, 'admin_profile.html', {'form': form})
 
+
+#Student"s course registration
 
 def course_portal(request):
     if request.method == 'POST':
