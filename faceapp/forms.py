@@ -133,10 +133,16 @@ class CheckStudentMatric(forms.ModelForm):
 
 
 class CourseForm (forms.ModelForm):
-    course_title = forms.CharField() 
-    course_code = forms.CharField()
+    title = forms.CharField()
+    code = forms.CharField()
 
     class Meta:
         model = Course
-        fields = ("course_title", "course_code",)
+        fields = ("title", "code",)
 
+
+class CourseRegForm (forms.ModelForm):
+
+    class Meta:
+        model = Student
+        fields = ("courses_registered",)

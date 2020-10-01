@@ -13,6 +13,16 @@ def get_admin_upload_path(instance, filename):
     return f'admin_faces/{instance.staff_number}{ext}'
 
 
+class Course(models.Model):
+
+    code = models.CharField(max_length=6, unique=True)
+    title = models.CharField(max_length=100, null=True)
+
+    # student.course._set.all
+    def __str__(self):
+        return f"{self.code}"
+
+
 class Admin(AbstractBaseUser):
 
     firstname = models.CharField(max_length=100)
@@ -46,11 +56,12 @@ class Student(AbstractBaseUser):
 
     firstname = models.CharField(max_length=100)
     surname = models.CharField(max_length=100)
-    matric_number = models.CharField(max_length=100, unique=True, null = True)
+    matric_number = models.CharField(max_length=100, unique=True, null=True)
     department = models.CharField(max_length=100)
     email = models.EmailField(max_length=254, unique=True)
     phone = models.CharField(max_length=11)
     img = models.ImageField(upload_to=get_student_upload_path)
+    courses_registered = models.ManyToManyField(Course)
 
     USERNAME_FIELD = "matric_number"
     objects = UserManager()
@@ -69,16 +80,3 @@ class Student(AbstractBaseUser):
         if not self.img:
             return "/static/images/face1.jpg"
         return self.img.url
-
-
-
-
-class Course(models.Model):
-    
-    student_matric_number = models.ManyToManyField(Student)
-    course_code = models.CharField(max_length= 15)
-    course_title = models.CharField(max_length = 100, null = True)
-
-#student.course._set.all
-    def get_courses(self):
-        return f"{self.student.course_set.all()}"

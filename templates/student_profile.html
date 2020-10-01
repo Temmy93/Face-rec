@@ -1,80 +1,94 @@
 {% extends "base.html" %}
 {% block title %} Profile | Student{% endblock %}
 {% block content %}
-{%load static  %}
-<section class="engine"><a href="https://mobirise.info/a">online web builder</a></section>
-<section class="mbr-section content5 cid-s9rci3DDEI" id="content5-n">
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="container">
+  {%load static  %}
+
+  <div class="mbr-row mbr-jc-c">
+    <div class="mbr-section-btn mbr-col-md-8 mbr-col-sm-12 mbr-col-lg-8 align-center">
+      <div class="mbr-row mbr-jc-c">
+        <div class="card mbr-col-sm-12 mbr-col-md-12 mbr-col-lg-6 last-child">
+          <div class="card-wrapper mbr-p-5 mbr-flex">
+            <div class="card-img mbr-col-sm-12 mbr-col-md-6 mbr-m-auto">
+              <img src="{{ request.user.get_img_url }}" layout="responsive" width="201" height="201"
+                                                                                        alt="Mobirise" class="mobirise-loader">
+              <div placeholder="" class="placeholder">
+                <div class="mobirise-spinner">
+                  <em></em>
+                  <em></em>
+                  <em></em>
+                </div>
+              </div>
+
+              </img>
+            </div>
+            <div class="card-box mbr-col-sm-12 mbr-col-md-6 mbr-m-auto mbr-p-2">
+              <h4 class="mbr-fonts-style card-subtitle align-left mbr-semibold display-4">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROFILE<br><br>
+                Name: {{ request.user.get_full_name }}<br><br>
+                Matric No: {{ request.user.matric_number }}<br><br>
+                Dept: {{ request.user.department }} <br><br>
+                Phone: {{ request.user.phone }} <br><br>
+                Email: {{ request.user.email }} <br><br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mbr-section-btn mbr-col-md-4 mbr-col-sm-12 mbr-col-lg-4 align-center">
+      <section class="mbr-section content5 cid-s9rci3DDEI" id="content5-n">
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="container">
             <div class="mbr-row mbr-jc-c">
-                <div class="mbr-section-btn mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center">
-                    <a class="btn btn-black-outline display-4">
-                        <span>
-                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="60%" height="100%"
-                                viewBox="0 0 32 32" fill="currentColor">
-                                <path
-                                    d="M16 6.667c-2.827 0-5.333 2.3-5.333 5.333v2.667c0 0.132 0.039 0.26 0.112 0.37l1.221 1.833v2.086l-6.344 3.805c-0.201 0.121-0.324 0.338-0.323 0.573v1.333c0 0.875 1.333 0.891 1.333 0v-0.956l6.344-3.805c0.201-0.121 0.323-0.338 0.323-0.573v-2.667c0-0.132-0.039-0.26-0.112-0.37l-1.221-1.833v-2.464c0-2.3 1.894-4 4-4s4 1.7 4 4v2.464l-1.221 1.833c-0.073 0.11-0.112 0.238-0.112 0.37v2.667c-0.001 0.234 0.122 0.452 0.323 0.573l6.344 3.805v0.956c0 0.907 1.333 0.854 1.333 0v-1.333c0.001-0.234-0.122-0.452-0.323-0.573l-6.344-3.805v-2.086l1.221-1.833c0.073-0.11 0.112-0.238 0.112-0.37v-2.667c0-3.033-2.506-5.333-5.333-5.333zM16 0c-8.829 0-16 7.171-16 16s7.171 16 16 16c8.829 0 16-7.171 16-16s-7.171-16-16-16zM16 1.333c8.108 0 14.667 6.559 14.667 14.667s-6.559 14.667-14.667 14.667c-8.108 0-14.667-6.559-14.667-14.667s6.559-14.667 14.667-14.667z">
-                                </path>
-                            </svg>
-                        </span>
-                    </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </div>
-                <div class="mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center">
-                    <input type="file" name="img" accept="image/*">
-                    <button class="btn btn-black-outline display-4 mbr-mr-auto" type="submit"
-                        value="Submit">Submit</button>
-                </div>
+              <div class="mbr-section-btn mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center">
+                <a class="btn btn-black-outline display-4">
+                  <span>
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="60%" height="100%"
+                                                                                      viewBox="0 0 32 32" fill="currentColor">
+                      <path
+                        d="M16 6.667c-2.827 0-5.333 2.3-5.333 5.333v2.667c0 0.132 0.039 0.26 0.112 0.37l1.221 1.833v2.086l-6.344 3.805c-0.201 0.121-0.324 0.338-0.323 0.573v1.333c0 0.875 1.333 0.891 1.333 0v-0.956l6.344-3.805c0.201-0.121 0.323-0.338 0.323-0.573v-2.667c0-0.132-0.039-0.26-0.112-0.37l-1.221-1.833v-2.464c0-2.3 1.894-4 4-4s4 1.7 4 4v2.464l-1.221 1.833c-0.073 0.11-0.112 0.238-0.112 0.37v2.667c-0.001 0.234 0.122 0.452 0.323 0.573l6.344 3.805v0.956c0 0.907 1.333 0.854 1.333 0v-1.333c0.001-0.234-0.122-0.452-0.323-0.573l-6.344-3.805v-2.086l1.221-1.833c0.073-0.11 0.112-0.238 0.112-0.37v-2.667c0-3.033-2.506-5.333-5.333-5.333zM16 0c-8.829 0-16 7.171-16 16s7.171 16 16 16c8.829 0 16-7.171 16-16s-7.171-16-16-16zM16 1.333c8.108 0 14.667 6.559 14.667 14.667s-6.559 14.667-14.667 14.667c-8.108 0-14.667-6.559-14.667-14.667s6.559-14.667 14.667-14.667z">
+                      </path>
+                    </svg>
+                  </span>
+                </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </div>
+              <div class="mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center">
+                <input type="file" name="img" accept="image/*">
+                <button class="btn btn-black-outline display-4 mbr-mr-auto" type="submit"
+                                                                            value="Submit">Submit</button>
+              </div>
             </div>
-        </div>
+          </div>
 
-    </form>
-</section>
-
-<section class="team2 mbr-section cid-s9rclUAwD5" id="team2-o">
-    <div class="container">
-        <div class="mbr-row mbr-jc-c">
-            <div class="card mbr-col-sm-12 mbr-col-md-12 mbr-col-lg-6 last-child">
-                <div class="card-wrapper mbr-p-5 mbr-flex">
-                    <div class="card-img mbr-col-sm-12 mbr-col-md-6 mbr-m-auto">
-                        <img src="{{ request.user.get_img_url }}" layout="responsive" width="201" height="201"
-                            alt="Mobirise" class="mobirise-loader">
-                            <div placeholder="" class="placeholder">
-                                <div class="mobirise-spinner">
-                                    <em></em>
-                                    <em></em>
-                                    <em></em>
-                                </div>
-                            </div>
-
-                        </img>
-                    </div>
-                    <div class="card-box mbr-col-sm-12 mbr-col-md-6 mbr-m-auto mbr-p-2">
-                        <h4 class="mbr-fonts-style card-subtitle align-left mbr-semibold display-4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROFILE<br><br>
-                        Name: {{ request.user.get_full_name }}<br><br>
-                        Matric No: {{ request.user.matric_number }}<br><br>
-                        Dept: {{ request.user.department }} <br><br>
-                        Phone: {{ request.user.phone }} <br><br>
-                        Email: {{ request.user.email }} <br><br>
-                        Courses Enrolled:{{ students }}</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </form>
+      </section>
     </div>
-</section>
+  </div>
 
-<section class="contact1 cid-s9rgDhltSO" id="contacts1-s">
+  <section class="contact1 cid-s9rgDhltSO" id="contacts1-s">
     <div class="container">
-        <h2 class="align-center mbr-fonts-style mbr-light display-2">
-            &nbsp;</h2>
-        <h3 class="mbr-section-subtitle align-center mbr-fonts-style mbr-light mbr-pt-1 mbr-pb-3 display-5">
-            Click the Button Below To Proceed To Course Registeration Portal  </h3>
-             <div class="mbr-row mbr-jc-c">
-            <div class="mbr-section-btn mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center"><a
-                    class="btn btn-primary display-4" href="course_portal">GO TO COURSE REG</a>
-            </div>
+    <div class="mbr-row mbr-jc-c">
+        <div class="container">
+          <h2 class="align-center mbr-fonts-style mbr-light display-2">
+            Courses Registered
+          </h2>
+          <ul>
+            {% for course in courses_registered %}
+              <h3 class="align-center mbr-fonts-style mbr-light display-5">
+                <li>{{ course.code }} - {{ course.title }} </li>
+                &nbsp;</h3>
+            {% endfor %}
+          </ul>
         </div>
+      </div>
+      <h3 class="mbr-section-subtitle align-center mbr-fonts-style mbr-light mbr-pt-1 mbr-pb-3 display-5">
+        Click the Button Below To Proceed To Course Registeration Portal </h3>
+      <div class="mbr-row mbr-jc-c">
+        <div class="mbr-section-btn mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center"><a
+             class="btn btn-primary display-4" href="course_portal">GO TO COURSE REG</a>
+        </div>
+      </div>
+
     </div>
-</section>
+  </section>
 {% endblock %}

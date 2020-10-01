@@ -1,12 +1,11 @@
 from django.shortcuts import render, redirect
-from django.db import models
-from django.contrib.auth import login, authenticate, logout
-from django.contrib import auth
-from django.contrib import messages
-from django import forms
-from django.contrib.auth.models import AbstractBaseUser, AbstractUser, UserManager
+from django.contrib.auth import login, logout
 
-from faceapp.forms import StudentRegistrationForm, StudentLoginForm, AdminRegistrationForm, AdminLoginForm, CourseForm, StudentImageUpload, AdminImageUpload, CheckStudentMatric
+from faceapp.forms import (
+    StudentRegistrationForm, StudentLoginForm, AdminRegistrationForm,
+    AdminLoginForm, CourseForm, StudentImageUpload, AdminImageUpload, CheckStudentMatric,
+    CourseRegForm
+)
 from faceapp.models import Admin, Student, Course
 
 
@@ -53,7 +52,7 @@ def student_profile(request):
         if form.is_valid():
             form.save()
             return redirect('student_profile')
-    return render(request, 'student_profile.html', {"form": form})
+    return render(request, 'student_profile.html', {"form": form, 'courses_registered': request.user.courses_registered.all()})
 
 
 def student_portal(request):
@@ -106,12 +105,11 @@ def admin_profile(request):
             form.save()
             return redirect('admin_profile')
     return render(request, 'admin_profile.html', {"form": form})
-    
 
     #print(request.user.is_authenticated, request.user)
-    #if not request.user.is_authenticated or not isinstance(request.user, Admin):
-     #   return redirect("admin_login")
-    #return render(request, 'admin_profile.html')
+    # if not request.user.is_authenticated or not isinstance(request.user, Admin):
+    #   return redirect("admin_login")
+    # return render(request, 'admin_profile.html')
 
 
 def admin_portal(request):
@@ -120,7 +118,7 @@ def admin_portal(request):
     return render(request, 'admin_portal.html')
 
 
-# supposed to check student's authenticity from admin end by 
+# supposed to check student's authenticity from admin end by
 # displayiong student profile  and course details on admin's page
 #
 def check_student(request):
@@ -129,30 +127,25 @@ def check_student(request):
         if form.is_valid():
             matric_number = form.cleaned_data['matric_number']
             print(matric_number)
-            return render (request.Student.objects.get(matric_number = matric_number))
+            return render(request.Student.objects.get(matric_number=matric_number))
     form = CheckStudentMatric()
     return render(request, 'admin_profile.html', {'form': form})
 
 
-#Student"s course registration
+# Student"s course registration
 
 def course_portal(request):
+    courses = Course.objects.all()
     if request.method == 'POST':
-        form = CourseForm(request.POST)
+        form = CourseRegForm(request.POST, instance=request.user)
         if form.is_valid():
-            course_title =form.cleaned_data['course_title']
-            course_code =form.cleaned_data['course_code']
             form.save()
-            print(course_title, course_code)
-             
-
-    form = CourseForm()
-    return render(request, 'coursereg.html', {'form': form})
-
+            return redirect("student_profile")
+    form = CourseRegForm(instance=request.user)
+    return render(request, 'coursereg.html', {'form': form, 'courses': courses})
 
 
 #students = Student.objects.all()
-#for student in students:
-    #print(student.course_set.all())
-    #print(students)
-    
+# for student in students:
+    # print(student.course_set.all())
+    # print(students)
