@@ -1,13 +1,38 @@
 {% extends "base.html" %}
 {% block content %}
-<section class="engine"><a href="https://mobirise.info/q">responsive site templates</a></section><section class="mbr-section content5 cid-s9rl2S5iOY" id="content5-y">
+<section class="engine"><a href="#">responsive site templates</a></section><section class="mbr-section content5 cid-s9rl2S5iOY" id="content5-y">
 
+
+
+
+
+ <div class="card-box mbr-col-sm-12 mbr-col-md-6 mbr-m-auto mbr-p-2">
+                            <h4 class="mbr-fonts-style card-subtitle align-left mbr-semibold display-4">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROFILE<br><br>
+                            Student's Name: {{ request.student.user.get_full_name }}<br><br>
+                            Student's Dept: {{ request.student.user.department }}<br><br>
+                            Student's Matric NO: {{ request.student.user.matric_number }}<br><br>
+                            Student's Phone No: {{ request.student.user.phone }}<br><br>
+                            Student's Email: {{ request.student.user.email }}<br><br></h4>
+
+                            
+                            </p>
+
+            </div>
+            <div class="container">
+                            <div class="mbr-row mbr-jc-c">
+                                <div class="mbr-section-btn mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center">
+                                    <a class="btn btn-primary display-4" href="authenticate">Authenticate Student</a>
+                                </div>
+                            </div>
+            </div>
     
 
     <div class="container">
         <div class="mbr-row mbr-jc-c">
-            <div class="mbr-section-btn mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center"><a class="btn btn-primary display-4" href="https://mobirise.co">CAPTURE</a>
-                <a class="btn btn-black-outline display-4" href="https://mobirise.co">VERIFY</a></div>
+            <div class="mbr-section-btn mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center">
+            <a class="btn btn-primary display-4" href="verify">VERIFY</a>
+            </div>
         </div>
     </div>
 </section>

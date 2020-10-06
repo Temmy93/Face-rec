@@ -58,10 +58,7 @@
                             Staff ID: {{ request.user.staff_number }}<br><br>
                             Phone: {{ request.user.phone }}<br><br>
                             Email: {{ request.user.email }}<br><br></h4>
-
-                            
                             </p>
-
                         </div>
                     </div>
                 </div>
@@ -76,18 +73,17 @@
             <div class="mbr-row mbr-jc-c mbr-pt-4">
                 <div class="mbr-col-lg-10  mbr-col-md-12 mbr-col-sm-12" data-form-type="formoid">
                 
-                    <form class="mbr-form" method="post" target="_top"
-                        action-xhr="https://formoid.net/api/amp-form/push" action = "check_student">
+                    <form class="mbr-form" method="post"  action = "check_student">
                         {% csrf_token %}
 
-                       {{ form.as_p }}
+                            {{ form.as_p }}
                         <div class="container">
                             <div class="mbr-row mbr-jc-c">
                                 <div class="mbr-section-btn mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center">
                                     <a class="btn btn-primary display-4" href="check_student">Check Student</a>
                                 </div>
                             </div>
-                    </div>
+                        </div>
 
 
                     </form>
@@ -98,17 +94,5 @@
 
 
 
-          <div class="card-box mbr-col-sm-12 mbr-col-md-6 mbr-m-auto mbr-p-2">
-                            <h4 class="mbr-fonts-style card-subtitle align-left mbr-semibold display-4">
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROFILE<br><br>
-                            Student's Name: {{ request.student.user.get_full_name }}<br><br>
-                            Student's Dept: {{ request.student.user.department }}<br><br>
-                            Student's Matric NO: {{ request.student.user.matric_number }}<br><br>
-                            Student's Phone No: {{ request.student.user.phone }}<br><br>
-                            Student's Email: {{ request.student.user.email }}<br><br></h4>
-
-                            
-                            </p>
-
-            </div>
+         
     {% endblock %}

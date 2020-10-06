@@ -10,7 +10,7 @@
           <div class="card-wrapper mbr-p-5 mbr-flex">
             <div class="card-img mbr-col-sm-12 mbr-col-md-6 mbr-m-auto">
               <img src="{{ request.user.get_img_url }}" layout="responsive" width="201" height="201"
-                                                                                        alt="Mobirise" class="mobirise-loader">
+                                                                                        alt="{{request.user.get_full_name}}" class="mobirise-loader">
               <div placeholder="" class="placeholder">
                 <div class="mobirise-spinner">
                   <em></em>
@@ -29,6 +29,7 @@
                 Dept: {{ request.user.department }} <br><br>
                 Phone: {{ request.user.phone }} <br><br>
                 Email: {{ request.user.email }} <br><br>
+              
             </div>
           </div>
         </div>
@@ -69,14 +70,14 @@
     <div class="container">
     <div class="mbr-row mbr-jc-c">
         <div class="container">
-          <h2 class="align-center mbr-fonts-style mbr-light display-2">
-            Courses Registered
+          <h2 class="align-left mbr-fonts-style mbr-light display-2">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Registered Courses
           </h2>
           <ul>
             {% for course in courses_registered %}
-              <h3 class="align-center mbr-fonts-style mbr-light display-5">
+              <h5 class="align-left mbr-fonts-style mbr-light display-5">
                 <li>{{ course.code }} - {{ course.title }} </li>
-                &nbsp;</h3>
+                &nbsp;</h5>
             {% endfor %}
           </ul>
         </div>

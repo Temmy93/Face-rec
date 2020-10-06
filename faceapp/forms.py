@@ -127,7 +127,7 @@ class CheckStudentMatric(forms.ModelForm):
     matric_number = forms.CharField()
 
     class Meta:
-        model = Admin
+        model = Student
         fields = ("matric_number",)
 
 
