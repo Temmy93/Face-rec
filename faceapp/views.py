@@ -130,10 +130,9 @@ def check_student(request):
         form = CheckStudentMatric(request.POST, instance=request.user)
         if form.is_valid():
             matric_number = form.cleaned_data['matric_number']
-            print(matric_number)
             Student.objects.get(matric_number=matric_number)
     form = CheckStudentMatric(instance = request.user)
-    return render(request, 'admin_profile.html', {'form': form})
+    return render(request, 'verify.html', {'form': form})
 
 
 # Student"s course registration
@@ -200,7 +199,7 @@ def verify(request):
 
         #img = cv2.rectangle (img, (x,y), (x+w, y+h), (0,255,0), 3)
         #imgS = cv2.resize(img, (int (img.shape[1]), int(img.shape[0]/2)))
-        imgS =cv2.resize(img, (0,0), None, 0.25,0.25)
+        imgS = cv2.resize(img, (0,0), None, 0.25,0.25)
         imgS = cv2.cvtColor(imgS, cv2.COLOR_BGR2RGB)
 
         facesCurFrame = face_recognition.face_locations(imgS)
@@ -226,7 +225,13 @@ def verify(request):
         cv2.imshow('Webcam', img)
         cv2.waitKey(1000)
         #cv2.destroyAllWindows()
-    return render(request, 'verify.html' )
+
+
+    #from admin end this is to enable the admin view the courses 
+    #registered by the student after the sy=tudent has been verified
+    def displayRegisteredCourses(request,img):
+    
+        return render(request, 'verify.html' )
 
 
 

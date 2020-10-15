@@ -64,35 +64,11 @@
                 </div>
             </div>
         </div>
-    </section>
-    <section class="contact1 cid-s9rgDhltSO" id="contacts1-s">
-        <div class="container">
-            <h2 class="align-center mbr-fonts-style mbr-light display-2">
-                Student Verification&nbsp;</h2>
-            <h3 class="mbr-section-subtitle align-center mbr-fonts-style mbr-light mbr-pt-1 mbr-pb-3 display-5"> Enter Student's Matriculation Number in The Column Below </h3>
-            <div class="mbr-row mbr-jc-c mbr-pt-4">
-                <div class="mbr-col-lg-10  mbr-col-md-12 mbr-col-sm-12" data-form-type="formoid">
-                
-                    <form class="mbr-form" method="post"  action = "check_student">
-                        {% csrf_token %}
-
-                            {{ form.as_p }}
-                        <div class="container">
-                            <div class="mbr-row mbr-jc-c">
-                                <div class="mbr-section-btn mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center">
-                                    <a class="btn btn-primary display-4" href="check_student">Check Student</a>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </form>
-
-                </div>
+    <div class="container">
+        <div class="mbr-row mbr-jc-c">
+            <div class="mbr-section-btn mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center">
+            <a class="btn btn-primary display-4" href="authenticate">GO TO AUTHENTICATION PAGE</a>
             </div>
         </div>
-
-
-
-         
+    </div>         
     {% endblock %}

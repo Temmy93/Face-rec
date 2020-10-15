@@ -5,17 +5,17 @@ from django.contrib.auth.models import AbstractBaseUser, AbstractUser, UserManag
 
 def get_student_upload_path(instance, filename):
     ext = Path(filename).suffix
-    return f'student_faces/{instance.matric_number}{ext}'
+    return f'student_faces/{instance.matric_number} {instance.surname} {instance.firstname}{ext}'
 
 
 def get_admin_upload_path(instance, filename):
     ext = Path(filename).suffix
-    return f'admin_faces/{instance.staff_number}{ext}'
+    return f'admin_faces/{instance.staff_number} {instance. surname} {instance. firstname}{ext}'
 
 
 class Course(models.Model):
 
-    code = models.CharField(max_length=6, unique=True)
+    code = models.CharField(max_length=30, unique=True)
     title = models.CharField(max_length=100, null=True)
 
     # student.course._set.all

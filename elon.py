@@ -4,12 +4,12 @@ import numpy as np
 import face_recognition
 
 #load the image 
-imgtee =face_recognition.load_image_file('toby/temmy.jpg')
+imgtee =face_recognition.load_image_file('toby/tee.jpg')
 imgtee = cv2.cvtColor(imgtee, cv2.COLOR_BGR2RGB) #convert the test image from BGR to RGB
 
 
 #load the test image
-imgtest =face_recognition.load_image_file('toby/dammy.jpg')
+imgtest =face_recognition.load_image_file('toby/temmy.jpg')
 imgtest = cv2.cvtColor(imgtest, cv2.COLOR_BGR2RGB) #convert the test image from BGR to RGB
 
 #Get face locations and image encodings

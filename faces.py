@@ -3,6 +3,9 @@ import face_recognition
 import numpy as np
 import os
 
+face_cascade = cv2.CascadeClassifier('C:\\Users\TEMMY_TOBY\AppData\Local\Programs\Python\Python37\Lib\site-packages\cv2\data\haarcascade_frontalface_default.xml')
+
+
 path ='media/student_faces'
 images = []
 classNames = []
@@ -22,6 +25,7 @@ def findEncodings(images):
         encode =face_recognition.face_encodings(img)[0]
         encodeList.append(encode)
     return encodeList
+
 
 encodeListKnown = findEncodings(images)
 print('Encoding Complete')
@@ -46,6 +50,11 @@ while True:
     imgS =cv2.resize(img, (0,0), None, 0.25,0.25)
     imgS = cv2.cvtColor(imgS, cv2.COLOR_BGR2RGB)
 
+    #gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+    #faces = face_cascade.detectMultiScale(gray_img, scaleFactor = 1.05, minNeighbors =5)
+
+
     facesCurFrame = face_recognition.face_locations(imgS)
     encodeCurFrame = face_recognition.face_encodings(imgS,facesCurFrame)
 
@@ -69,3 +78,5 @@ while True:
     
     cv2.imshow('Webcam', img)
     cv2.waitKey(0)
+
+
