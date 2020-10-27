@@ -126,13 +126,14 @@ def admin_portal(request):
 # displayiong student profile  and course details on admin's page
 #
 def check_student(request):
+    student = Student.objects.all()
     if request.method == "POST":
         form = CheckStudentMatric(request.POST, instance=request.user)
+        matric_number = form.cleaned_data['matric_number']
         if form.is_valid():
-            matric_number = form.cleaned_data['matric_number']
             Student.objects.get(matric_number=matric_number)
     form = CheckStudentMatric(instance = request.user)
-    return render(request, 'verify.html', {'form': form})
+    return render(request, 'verify.html', {'form': form, 'student': student})
 
 
 # Student"s course registration
