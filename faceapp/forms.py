@@ -123,13 +123,19 @@ class AdminImageUpload(forms.ModelForm):
         fields = ("img",)
 
 
-class CheckStudentMatric(forms.ModelForm):
+class CheckStudentMatricForm(forms.Form):
     matric_number = forms.CharField()
 
-    class Meta:
-        model = Admin
-        fields = ("matric_number",)
+    def clean_matric_number(self):
+        matric_number = self.cleaned_data.get("matric_number")
+        try:
+            _ = Student.objects.get(matric_number=matric_number)
+        except Student.DoesNotExist:
+            raise ValidationError(f"Student with matric number {matric_number} does not exist")
+        return matric_number
 
+    class Meta:
+        fields = ("matric_number",)
 
 
 class CourseForm (forms.ModelForm):

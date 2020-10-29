@@ -7,7 +7,7 @@ import os
 
 from faceapp.forms import (
     StudentRegistrationForm, StudentLoginForm, AdminRegistrationForm,
-    AdminLoginForm, CourseForm, StudentImageUpload, AdminImageUpload, CheckStudentMatric,
+    AdminLoginForm, CourseForm, StudentImageUpload, AdminImageUpload, CheckStudentMatricForm,
     CourseRegForm
 )
 from faceapp.models import Admin, Student, Course
@@ -126,13 +126,13 @@ def admin_portal(request):
 # displayiong student profile  and course details on admin's page
 #
 def check_student(request):
-    student = Student.objects.all()
+    student = None
+    form = CheckStudentMatricForm()
     if request.method == "POST":
-        form = CheckStudentMatric(request.POST, instance=request.user)
-        matric_number = form.cleaned_data['matric_number']
+        form = CheckStudentMatricForm(request.POST)
         if form.is_valid():
-            Student.objects.get(matric_number=matric_number)
-    form = CheckStudentMatric(instance = request.user)
+            matric_number = form.cleaned_data.get('matric_number')
+            student = Student.objects.get(matric_number=matric_number)
     return render(request, 'verify.html', {'form': form, 'student': student})
 
 
@@ -149,7 +149,6 @@ def course_portal(request):
     return render(request, 'coursereg.html', {'form': form, 'courses': courses})
 
 
-
 def authenticate(request):
     return render(request, 'verify.html')
 
@@ -160,7 +159,7 @@ def authenticate(request):
 
 
 def verify(request):
-    path ='media/student_faces'
+    path = 'media/student_faces'
     images = []
     classNames = []
     myList = os.listdir(path)
@@ -176,21 +175,17 @@ def verify(request):
         encodeList = []
         for img in images:
             img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-            encode =face_recognition.face_encodings(img)[0]
+            encode = face_recognition.face_encodings(img)[0]
             encodeList.append(encode)
         return encodeList
 
     encodeListKnown = findEncodings(images)
     print('Encoding Complete')
 
-
-
     cap = cv2.VideoCapture(0)
 
-
-
     while True:
-        success, img =cap.read()
+        success, img = cap.read()
 
         #scale_percent= 50
         #width = int(img.shape[1] * scale_percent/100)
@@ -200,7 +195,7 @@ def verify(request):
 
         #img = cv2.rectangle (img, (x,y), (x+w, y+h), (0,255,0), 3)
         #imgS = cv2.resize(img, (int (img.shape[1]), int(img.shape[0]/2)))
-        imgS = cv2.resize(img, (0,0), None, 0.25,0.25)
+        imgS = cv2.resize(img, (0, 0), None, 0.25, 0.25)
         imgS = cv2.cvtColor(imgS, cv2.COLOR_BGR2RGB)
 
         facesCurFrame = face_recognition.face_locations(imgS)
@@ -212,27 +207,22 @@ def verify(request):
             print(faceDis)
             matchIndex = np.argmin(faceDis)
 
-
             if matches[matchIndex]:
                 name = classNames[matchIndex].upper()
                 print(name)
                 y1, x2, y2, x1 = faceLoc
                 y1, x2, y2, x1 = y1*4, x2*4, y2*4, x1*4
-                cv2.rectangle(img,(x1,y1), (x2,y2),(0,255,0), 2)
-                cv2.rectangle(img, (x1,y2-35), (x2,y2), (0,255,0), cv2.FILLED)
-                cv2.putText(img, name (x1+6, y2-6), cv2.FONT_HERSHEY_COMPLEX, 1, (255,255,255), 2)
-    
-    
+                cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                cv2.rectangle(img, (x1, y2-35), (x2, y2), (0, 255, 0), cv2.FILLED)
+                cv2.putText(img, name(x1+6, y2-6), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
+
         cv2.imshow('Webcam', img)
         cv2.waitKey(1000)
-        #cv2.destroyAllWindows()
+        # cv2.destroyAllWindows()
 
+    # from admin end this is to enable the admin view the courses
+    # registered by the student after the sy=tudent has been verified
 
-    #from admin end this is to enable the admin view the courses 
-    #registered by the student after the sy=tudent has been verified
-    def displayRegisteredCourses(request,img):
-    
-        return render(request, 'verify.html' )
+    def displayRegisteredCourses(request, img):
 
-
-
+        return render(request, 'verify.html')

@@ -29,24 +29,21 @@
             </div>
         </div>
     </section>
+    {% if student %}
  <div class="card-box mbr-col-sm-12 mbr-col-md-6 mbr-m-auto mbr-p-2">
-                            <h4 class="mbr-fonts-style card-subtitle align-left mbr-semibold display-4">
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROFILE<br><br>
-                            Student's Name: {{ request.student.get_full_name }}<br><br>
-                            Student's Dept: {{ request.department }}<br><br>
-                            Student's Matric NO: {{ matric_number }}<br><br>
-                            Student's Phone No: {{ phone }}<br><br>
-                            Student's Email: {{ email }}<br><br></h4>
-                            </p>
-
-            </div>
-        
-    
-
+    <h4 class="mbr-fonts-style card-subtitle align-left mbr-semibold display-4">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROFILE<br><br>
+    Student's Name: {{ student.get_full_name }}<br><br>
+    Student's Dept: {{ student.department }}<br><br>
+    Student's Matric NO: {{ student.matric_number }}<br><br>
+    Student's Phone No: {{ student.phone }}<br><br>
+    Student's Email: {{ student.email }}<br><br></h4>
+    </p>
+</div>
     <div class="container">
         <div class="mbr-row mbr-jc-c">
             <div class="mbr-section-btn mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center">
-            <a class="btn btn-primary display-4" href="verify">VERIFY</a>
+            <a class="btn btn-primary display-4" href="{% url 'verify' %}">VERIFY</a>
             </div>
         </div>
     </div>
@@ -59,7 +56,7 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Registered Courses
           </h2>
           <ul>
-            {% for course in courses_registered %}
+            {% for course in student.courses_registered.all %}
               <h5 class="align-left mbr-fonts-style mbr-light display-5">
                 <li>{{ course.code }} - {{ course.title }} </li>
                 &nbsp;</h5>
@@ -68,4 +65,5 @@
         </div>
       </div>
   </section>
+    {% endif %}
 {% endblock %}
