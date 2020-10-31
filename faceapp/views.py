@@ -127,12 +127,16 @@ def admin_portal(request):
 #
 def check_student(request):
     student = None
+    if request.session.get("student"):
+        student = Student.objects.get(matric_number=request.session.get("student"))
     form = CheckStudentMatricForm()
     if request.method == "POST":
+        student = None
         form = CheckStudentMatricForm(request.POST)
         if form.is_valid():
             matric_number = form.cleaned_data.get('matric_number')
-            student = Student.objects.get(matric_number=matric_number)
+            request.session["student"] = matric_number
+            return redirect("check_student")
     return render(request, 'verify.html', {'form': form, 'student': student})
 
 
