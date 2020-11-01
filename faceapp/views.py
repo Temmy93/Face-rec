@@ -1,3 +1,4 @@
+#import packages
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 import cv2
@@ -135,6 +136,7 @@ def check_student(request):
         form = CheckStudentMatricForm(request.POST)
         if form.is_valid():
             matric_number = form.cleaned_data.get('matric_number')
+            print("matric_number")
             request.session["student"] = matric_number
             return redirect("check_student")
     return render(request, 'verify.html', {'form': form, 'student': student})
