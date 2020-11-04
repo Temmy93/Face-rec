@@ -1,5 +1,53 @@
 {% extends "base.html" %}
 {% block content %}
+    <style>
+    /* CSS comes here */
+    #video {
+        border: 1px solid black;
+        width: 320px;
+        height: 240px;
+    }
+
+    #photo {
+        border: 1px solid black;
+        width: 320px;
+        height: 240px;
+    }
+
+    #canvas {
+        display: none;
+    }
+
+    .camera {
+        width: 340px;
+        display: inline-block;
+    }
+
+    .output {
+        width: 340px;
+        display: inline-block;
+    }
+
+    #startbutton {
+        display: block;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        bottom: 36px;
+        padding: 5px;
+        background-color: #6a67ce;
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        font-size: 14px;
+        color: rgba(255, 255, 255, 1.0);
+        cursor: pointer;
+    }
+
+    .contentarea {
+        font-size: 16px;
+        font-family: Arial;
+        text-align: center;
+    }
+    </style>
 <section class="engine"><a href="#">responsive site templates</a></section><section class="mbr-section content5 cid-s9rl2S5iOY" id="content5-y">
 
 
@@ -12,14 +60,14 @@
             <div class="mbr-row mbr-jc-c mbr-pt-4">
                 <div class="mbr-col-lg-10  mbr-col-md-12 mbr-col-sm-12" data-form-type="formoid">
                 
-            <form class="mbr-form" method="post"  action = "check_student">
+            <form class="mbr-form" method="post" >
                     {% csrf_token %}
                     {{ form }} 
 
                  <div class="container">
                     <div class="mbr-row mbr-jc-c">
                         <div class="mbr-section-btn mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center">
-                            <a class="btn btn-primary display-4" href="check_student">Check Student</a>
+                            <button class="btn btn-primary display-4" href="check_student" type="submit">Check Student</button>
                         </div>
                     </div>
                 </div>
@@ -66,6 +114,108 @@
         </div>
       </div>
   </section>
-  
+
+  <section>
+        <div class="contentarea">
+            <h1>
+                Capture Candidate's Picture
+            </h1>
+        <div class="camera">
+            <video id="video">Video stream not available.</video>
+        </div>
+        <div><button id="startbutton">Take photo</button></div>
+        <canvas id="canvas"></canvas>
+        <div class="output">
+            <img id="photo" alt="The screen capture will appear in this box.">
+        </div>
+        </div>
+
+    <script>
+    /* JS comes here */
+    (function() {
+
+        var width = 350; // We will scale the photo width to this
+        var height = 0; // This will be computed based on the input stream
+
+        var streaming = false;
+
+        var video = null;
+        var canvas = null;
+        var photo = null;
+        var startbutton = null;
+
+        function startup() {
+            video = document.getElementById('video');
+            canvas = document.getElementById('canvas');
+            photo = document.getElementById('photo');
+            startbutton = document.getElementById('startbutton');
+
+            navigator.mediaDevices.getUserMedia({
+                    video: true,
+                    audio: false
+                })
+                .then(function(stream) {
+                    video.srcObject = stream;
+                    video.play();
+                })
+                .catch(function(err) {
+                    console.log("An error occurred: " + err);
+                });
+
+            video.addEventListener('canplay', function(ev) {
+                if (!streaming) {
+                    height = video.videoHeight / (video.videoWidth / width);
+
+                    if (isNaN(height)) {
+                        height = width / (4 / 3);
+                    }
+
+                    video.setAttribute('width', width);
+                    video.setAttribute('height', height);
+                    canvas.setAttribute('width', width);
+                    canvas.setAttribute('height', height);
+                    streaming = true;
+                }
+            }, false);
+
+            startbutton.addEventListener('click', function(ev) {
+                takepicture();
+                ev.preventDefault();
+            }, false);
+
+            clearphoto();
+        }
+
+
+        function clearphoto() {
+            var context = canvas.getContext('2d');
+            context.fillStyle = "#AAA";
+            context.fillRect(0, 0, canvas.width, canvas.height);
+
+            var data = canvas.toDataURL('image/png');
+            photo.setAttribute('src', data);
+        }
+
+        function takepicture() {
+            var context = canvas.getContext('2d');
+            if (width && height) {
+                canvas.width = width;
+                canvas.height = height;
+                context.drawImage(video, 0, 0, width, height);
+
+                var data = canvas.toDataURL('image/png');
+                photo.setAttribute('src', data);
+            } else {
+                clearphoto();
+            }
+        }
+
+        window.addEventListener('load', startup, false);
+    })();
+    </script>
+
+    
+  </section>
+    
     {% endif %}
 {% endblock %}

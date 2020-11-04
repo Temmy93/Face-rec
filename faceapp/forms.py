@@ -36,7 +36,7 @@ class AdminRegistrationForm(forms.ModelForm):
             user.save()
         return user
 
-MY nabgwehwue
+
 class StudentRegistrationForm(forms.ModelForm):
     password1 = forms.CharField(
         label="Password",
@@ -152,3 +152,7 @@ class CourseRegForm (forms.ModelForm):
     class Meta:
         model = Student
         fields = ("courses_registered",)
+
+
+class VerifyPictureForm(forms.Form):
+    img = forms.ImageField(allow_empty_file=False)

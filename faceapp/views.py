@@ -136,9 +136,9 @@ def check_student(request):
         form = CheckStudentMatricForm(request.POST)
         if form.is_valid():
             matric_number = form.cleaned_data.get('matric_number')
-            print("matric_number")
             request.session["student"] = matric_number
-            return redirect("check_student")
+            return redirect("check_student")   
+            form.save()
     return render(request, 'verify.html', {'form': form, 'student': student})
 
 
@@ -165,6 +165,7 @@ def authenticate(request):
 
 
 def verify(request):
+    
     path = 'media/student_faces'
     images = []
     classNames = []
@@ -226,9 +227,4 @@ def verify(request):
         cv2.waitKey(1000)
         # cv2.destroyAllWindows()
 
-    # from admin end this is to enable the admin view the courses
-    # registered by the student after the sy=tudent has been verified
 
-    def displayRegisteredCourses(request, img):
-
-        return render(request, 'verify.html')
