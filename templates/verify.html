@@ -89,13 +89,7 @@
     Student's Email: {{ student.email }}<br><br></h4>
     </p>
 </div>
-    <div class="container">
-        <div class="mbr-row mbr-jc-c">
-            <div class="mbr-section-btn mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center">
-            <a class="btn btn-primary display-4" href="{% url 'verify' %}">VERIFY</a>
-            </div>
-        </div>
-    </div>
+    
 </section>
   <section class="contact1 cid-s9rgDhltSO" id="contacts1-s">
     <div class="container">
@@ -208,11 +202,39 @@
             } else {
                 clearphoto();
             }
+            $.ajax({
+                type: "POST",
+                url: '/verify',
+                data: {
+                    "cantext": context,
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                dataType: "json",
+                success: function (data) {
+                    // any process in data
+                    alert("successfull")
+                },
+                failure: function () {
+                    alert("failure");
+                }
+            });
         }
 
         window.addEventListener('load', startup, false);
     })();
+    
+
+
+
+
     </script>
+    <div class="container">
+        <div class="mbr-row mbr-jc-c">
+            <div class="mbr-section-btn mbr-col-md-12 mbr-col-sm-12 mbr-col-lg-8 align-center">
+            <a class="btn btn-primary display-4" href="{% url 'verify' %}">VERIFY</a>
+            </div>
+        </div>
+    </div>
 
     
   </section>

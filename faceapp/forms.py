@@ -156,3 +156,9 @@ class CourseRegForm (forms.ModelForm):
 
 class VerifyPictureForm(forms.Form):
     img = forms.ImageField(allow_empty_file=False)
+
+    def clean_img(self):
+        img = self.cleaned_data.get("img")
+
+    class Meta:
+        fields = ("img",)
